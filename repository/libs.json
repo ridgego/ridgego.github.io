@@ -1,0 +1,16 @@
+[{
+    "name":"axios",
+    "title": "Axios",
+    "version": "1.3.6",
+    "splash": "logo.svg",
+    "icon": "favicon.ico",
+    "main": "dist/axios.min.js",
+    "desc": "Promise based HTTP client for the browser and node.js"
+}, {
+    "name":"axios",
+    "title": "Axios",
+    "version": "1.3.6",
+    "splash": "logo.svg",
+    "main": "dist/axios.min.js",
+    "desc": "Promise based HTTP client for the browser and node.js"
+}]
