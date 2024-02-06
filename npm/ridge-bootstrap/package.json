@@ -5,13 +5,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "build-fc",
-    "watch": "build-fc -w -s",
-    "help": "build-fc --help",
+    "build": "rcbuild",
+    "watch": "rcbuild -w -s",
+    "help": "rcbuild --help",
     "pd": "npm publish --tag dev"
   },
   "externals": [
     "bootstrap.min.css",
+    "bootstrap-icons.min.css",
     "bootstrap.bundle.min.js"
   ],
   "files": [
@@ -19,5 +20,18 @@
   ],
   "author": "",
   "license": "ISC",
-  "components": []
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "components": [
+    "badge",
+    "button",
+    "checkbox",
+    "icons",
+    "input",
+    "radio",
+    "select",
+    "style",
+    "typography"
+  ]
 }

@@ -7,6 +7,7 @@ export default class FlexBoxContainer extends BaseContainer {
       direction = 'row',
       alignItems = 'stretch',
       gap = 0,
+      padding,
       justify = 'flex-start',
       rectStyle
     } = this.props
@@ -15,6 +16,8 @@ export default class FlexBoxContainer extends BaseContainer {
       flexDirection: direction,
       justifyContent: justify,
       alignItems,
+      boxSizing: 'border-box',
+      padding: padding + 'px',
       gap: gap + 'px'
     }
 
@@ -22,15 +25,44 @@ export default class FlexBoxContainer extends BaseContainer {
     return containerStyle
   }
 
-  getChildStyle (wrapper) {
-    const style = {
-      width: '',
-      height: ''
-    }
-    const configStyle = wrapper.config.style
+  // 放入一个新的rect后，根据位置放置其所在子节点的索引
+  checkNodeOrder (rect) {
+    const centerX = rect.x + rect.width / 2
+    const centerY = rect.y + rect.height / 2
+    const childNodes = this.containerEl.childNodes
+    const {
+      // 相关系统变量
+      direction = 'row'
+    } = this.props
 
-    if (wrapper.config.props.styleMargin) {
-      style.margin = wrapper.config.props.styleMargin
+    if (direction === 'row') {
+      // 横向
+      for (let i = 0; i < childNodes.length; i++) {
+        const bc = childNodes[i].getBoundingClientRect()
+        const compareX = bc.x + bc.width / 2
+        if (compareX > centerX) {
+          return i
+        }
+      }
+    } else if (direction === 'column') {
+      // 纵向
+      for (let i = 0; i < childNodes.length; i++) {
+        const bc = childNodes[i].getBoundingClientRect()
+        const compareY = bc.y + bc.height / 2
+        if (compareY > centerY) {
+          return i
+        }
+      }
+    }
+    return -1
+  }
+
+  getChildStyle (view) {
+    const style = this.getResetStyle()
+    const configStyle = view.config.style
+
+    if (view.config.props.styleMargin) {
+      style.margin = view.config.props.styleMargin
     } else {
       style.margin = 0
     }
@@ -51,37 +83,6 @@ export default class FlexBoxContainer extends BaseContainer {
         style.width = configStyle.width ? (configStyle.width + 'px') : ''
       }
     }
-    style.zIndex = 10
     return style
-  }
-
-  getShadowStyle (configStyle) {
-    const shadowStyle = {}
-    if (configStyle) {
-      if (configStyle.flex) {
-        shadowStyle.flex = configStyle.flex
-      }
-    }
-    return shadowStyle
-  }
-
-  // 拖拽一个矩形到容器上，判断将其插入到哪个位置
-  getAfterNode (droppedRect, siblings) {
-    const { direction } = this.props
-    const pos = (direction === 'row') ? (droppedRect.x + droppedRect.width / 2) : (droppedRect.y + droppedRect.height / 2)
-    let last = 10000000000
-    let result = null
-    for (const sibling of siblings) {
-      if (sibling.classList.contains('drop-shadow')) {
-        continue
-      }
-      const siblingRect = sibling.getBoundingClientRect()
-      const siblingpos = (direction === 'row') ? (siblingRect.x + siblingRect.width / 2) : (siblingRect.y + siblingRect.height / 2)
-      if (pos < siblingpos && siblingpos < last) {
-        last = siblingpos
-        result = sibling
-      }
-    }
-    return result
   }
 }

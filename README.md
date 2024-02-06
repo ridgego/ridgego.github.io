@@ -1,1 +1,0 @@
-# ridgego.github.io

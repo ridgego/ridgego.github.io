@@ -1,41 +1,54 @@
-import FlowContainer from './FlowContainer.js'
-import { border } from 'ridge-prop-utils'
+import FlowContainer from './FlowContainer'
+
 export default {
   name: 'flow-container',
   component: FlowContainer,
-  label: '流式容器',
+  label: '文档流',
   type: 'vanilla',
-  icon: 'IconTemplateStroked',
+  order: 3,
+  icon: 'bi bi-text-wrap',
   props: [{
-    name: 'coverContainer',
-    label: '填充',
-    type: 'boolean'
-  }, {
     name: 'children',
     hidden: true,
     type: 'children'
-  }, ...border.props],
-  childStyle: [{
-    name: 'maxWidth',
+  }, {
+    label: '间隔',
+    name: 'gap',
+    width: '50%',
     type: 'number',
-    label: '最大宽度'
+    value: 8
   }, {
-    name: 'display',
+    label: '内边距',
+    name: 'padding',
+    type: 'number',
+    value: 0
+  }, {
+    name: 'classNames',
+    label: '样式',
+    type: 'class',
+    value: []
+  }],
+  childProps: [{
+    field: 'style.width',
+    label: '宽度',
     type: 'string',
-    label: '显示',
-    control: 'select',
-    optionList: [{
-      value: 'block',
-      label: '整行'
-    }, {
-      value: 'inline-block',
-      label: '行内'
-    }],
-    value: 'block'
+    width: '50%'
   }, {
-    name: 'center',
+    field: 'style.height',
+    label: '高度',
+    type: 'string',
+    width: '50%'
+  }, {
+    field: 'style.margin',
+    label: '外边距',
+    type: 'string',
+    width: '50%'
+  }, {
+    field: 'style.block',
+    label: '块级',
     type: 'boolean',
-    value: true,
-    label: '居中'
-  }]
+    width: '50%'
+  }],
+  width: 360,
+  height: 240
 }

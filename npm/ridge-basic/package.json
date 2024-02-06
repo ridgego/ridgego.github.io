@@ -2,31 +2,23 @@
   "name": "ridge-basic",
   "version": "1.0.0",
   "description": "基本组件",
-  "icon": "bi bi-bag",
+  "icon": "bi bi-box-seam",
   "main": "index.js",
   "scripts": {
-    "build": "build-fc",
-    "watch": "build-fc -s -w",
-    "help": "build-fc --help",
-    "debug": "build-fc -w -s -p 5151",
-    "bs": "build-fc -s",
-    "pd": "npm publish --tag dev"
+    "build": "rcbuild",
+    "watch": "rcbuild -s -w",
+    "help": "rcbuild --help",
+    "pubdev": "npm publish --tag dev"
   },
   "files": [
     "build"
   ],
   "components": [
     "audio",
-    "button",
-    "checkbox",
+    "composite",
     "image",
-    "input",
-    "radio",
-    "range",
-    "rect",
-    "select",
-    "text",
-    "textarea"
+    "shape",
+    "video"
   ],
   "dependencies": {
     "ridge-prop-utils": "^1.0.0"

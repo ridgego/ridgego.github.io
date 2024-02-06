@@ -6,7 +6,7 @@ export default {
   label: '弹性容器',
   type: 'vanilla',
   order: 3,
-  icon: 'bi bi-layout-sidebar',
+  icon: 'bi bi-layout-three-columns',
   props: [{
     name: 'direction',
     label: '排列方向',
@@ -57,23 +57,28 @@ export default {
     }],
     value: 'flex-start'
   }, {
-    label: '子元素',
     name: 'children',
     hidden: true,
     type: 'children'
   }, {
     label: '间隔',
     name: 'gap',
-    party: true,
+    width: '50%',
+    type: 'number',
+    value: 8
+  }, {
+    label: '内间距',
+    name: 'padding',
+    width: '50%',
     type: 'number',
     value: 8
   }, {
     name: 'classNames',
     label: '样式',
-    type: 'class',
+    type: 'style',
     value: []
   }],
-  childStyle: [{
+  childProps: [{
     label: 'W',
     width: '50%',
     control: 'number',

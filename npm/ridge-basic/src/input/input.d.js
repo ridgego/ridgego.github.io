@@ -2,7 +2,7 @@ import Input from './Input'
 export default {
   name: 'input',
   component: Input,
-  icon: 'bi bi-textarea-resize',
+  icon: 'icon/input-field.svg',
   type: 'vanilla',
   title: '输入框',
   order: 5,
@@ -46,37 +46,18 @@ export default {
     connect: true,
     type: 'color'
   }, {
-    name: 'borderWidth',
+    name: 'border',
     label: '边框',
-    type: 'number',
-    width: 96,
-    value: 0
-  }, {
-    name: 'borderStyle',
-    type: 'select',
-    value: 'solid',
-    width: 72,
-    options: [{
-      label: '实线',
-      value: 'solid'
-    }, {
-      label: '虚线',
-      value: 'dashed'
-    }, {
-      label: '点线',
-      value: 'dotted'
-    }, {
-      label: '双实线',
-      value: 'double'
-    }]
-  }, {
-    name: 'borderColor',
-    width: 28,
-    connect: true,
-    type: 'color'
+    type: 'border'
   }, {
     name: 'borderRadius',
     label: '圆角',
+    width: '50%',
+    type: 'number',
+    value: 0
+  }, {
+    name: 'padding',
+    label: '内边距',
     width: '50%',
     type: 'number',
     value: 0
